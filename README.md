@@ -1,7 +1,7 @@
 # simd-bench
 Benchmark of SIMD methods applied to FIX messaging
 
-Benchmark                                       (size)   Mode  Cnt          Score         Error  Units
+```Benchmark                                       (size)   Mode  Cnt          Score         Error  Units
 ComputeChecksumBenchmark.compute                    15  thrpt    5  155243301,737 ±  353850,599  ops/s
 ComputeChecksumBenchmark.compute                   255  thrpt    5    7898976,460 ±   24360,965  ops/s
 ComputeChecksumBenchmark.compute                 65535  thrpt    5      29621,311 ±      24,184  ops/s
@@ -22,4 +22,4 @@ ParseChecksumBenchmark.parse                       N/A  thrpt    5   39808986,16
 ParseChecksumBenchmark.parseSIMD                   N/A  thrpt    5   60427728,078 ±  479402,248  ops/s
 ParseIntegerBenchmark.parse                        N/A  thrpt    5   39870853,913 ±  209115,236  ops/s
 ParseIntegerBenchmark.parseSIMD                    N/A  thrpt    5   57359122,502 ±  186756,645  ops/s
-
+```
