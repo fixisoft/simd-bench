@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id "me.champeau.jmh" version "0.7.3"
+}
+
+group 'com.fixisoft'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+    minHeapSize = '1g'// lookup tables require more than default memory
+    maxHeapSize = '1g'
+}
+
+dependencies {
+    implementation 'io.netty:netty-buffer:4.1.119.Final'
+    implementation 'io.netty:netty-common:4.1.119.Final'
+    implementation 'com.google.guava:guava:33.4.0-jre'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+var incubatorArguments = ["--add-modules", "jdk.incubator.vector"]
+tasks.withType(AbstractCompile) { options.compilerArgs += incubatorArguments }
+tasks.withType(Test) { jvmArgs += incubatorArguments }
+
+jmh {
+    //includes = ['com.fixisoft.fix.ParseIntegerBenchmark']
+    iterations = 5 // Number of measurement iterations to do.
+    fork = 1 // How many times to forks a single benchmark. Use 0 to disable forking altogether
+    failOnError = true // Should JMH fail immediately if any benchmark had experienced the unrecoverable error?
+    forceGC = false // Should JMH force GC between iterations?
+    jvmArgsAppend = incubatorArguments
+    warmupIterations = 2 // Number of warmup iterations to do.
+    zip64 = true // Use ZIP64 format for bigger archives
+    jmhVersion = '1.37' // Specifies JMH version
+    duplicateClassesStrategy = DuplicatesStrategy.EXCLUDE
+    // Strategy to apply when encountring duplicate classes during creation of the fat jar (i.e. while executing jmhJar task)
+}
