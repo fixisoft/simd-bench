@@ -1,5 +1,10 @@
 # simd-bench
-Benchmark of SIMD methods applied to FIX messaging
+Benchmark of SIMD methods applied to FIX messaging.
+
+It's a benchmark only repo. Please run the following command 
+to run the jmh micro benchmarks
+
+```gradle clean jmh```
 
 Result on AMD Ryzen 9 7950X3D 16-Core Processor
 
@@ -50,3 +55,6 @@ ParseChecksumBenchmark.parseSIMD                   N/A  thrpt    5   60427728,07
 ParseIntegerBenchmark.parse                        N/A  thrpt    5   39870853,913 ±  209115,236  ops/s
 ParseIntegerBenchmark.parseSIMD                    N/A  thrpt    5   57359122,502 ±  186756,645  ops/s
 ```
+
+Find out more on [medium](https://medium.com/@pyp.net/simd-low-latency-network-applications-and-fix-ea3179bd078d)
+
